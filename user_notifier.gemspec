@@ -7,15 +7,17 @@ require "user_notifier/version"
 Gem::Specification.new do |s|
   s.name        = "user_notifier"
   s.version     = UserNotifier::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of UserNotifier."
-  s.description = "TODO: Description of UserNotifier."
+  s.authors     = ["Diogo Biazus"]
+  s.email       = ["diogo@biazus.me"]
+  s.homepage    = "https://github.com/diogob/user_notifier"
+  s.summary     = "Simple pattern for keeping track of messages sent to users based on model events with different templates."
+  s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.0.0"
+  s.add_development_dependency 'rspec-rails'
 
   s.add_development_dependency "sqlite3"
 end
