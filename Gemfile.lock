@@ -85,6 +85,8 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.2)
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
     sidekiq (3.1.4)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
@@ -115,5 +117,6 @@ PLATFORMS
 
 DEPENDENCIES
   rspec-rails
+  shoulda-matchers
   sqlite3
   user_notifier!
