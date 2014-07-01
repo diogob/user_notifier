@@ -9,12 +9,13 @@ describe UserNotifier::Base do
   end
 
   describe ".notify" do
-    before do
-      user.notify :test
-    end
+    subject{ user.notify('test') }
 
     it "should create notification in the database" do
+      subject
       expect(UserNotification.last).to be_present
     end
+
+    its(:template_name){ should eq 'test' }
   end
 end

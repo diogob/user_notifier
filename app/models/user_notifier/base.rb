@@ -12,7 +12,7 @@ class UserNotifier::Base < ActiveRecord::Base
       locale: I18n.locale,
       from_email: UserNotifier.from_email,
       from_name: UserNotifier.from_name
-    }.merge(params)).deliver
+    }.merge(params)).tap{|n| n.deliver }
   end
 
   def deliver
