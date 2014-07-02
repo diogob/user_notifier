@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe UserNotifier::Base do
   let(:user){ User.create email: 'foo@bar.com' }
+  before{ user }
 
   describe "associations" do
     subject{ user }
@@ -9,7 +10,7 @@ describe UserNotifier::Base do
   end
 
   describe ".notify" do
-    subject{ user.notify('test') }
+    subject{ UserNotification.notify('test', user) }
 
     it "should create notification in the database" do
       subject
@@ -17,5 +18,8 @@ describe UserNotifier::Base do
     end
 
     its(:template_name){ should eq 'test' }
+  end
+
+  describe "" do
   end
 end
