@@ -21,6 +21,7 @@ class UserNotifier::Base < ActiveRecord::Base
 
   def deliver!
     UserNotifier::EmailWorker.perform_async(self.class.name.to_s, self.id)
+    self.update_attributes sent_at: Time.now()
   end
 
   private
