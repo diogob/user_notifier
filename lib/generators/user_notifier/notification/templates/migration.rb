@@ -1,4 +1,4 @@
-class Create<%= table_name.camelize %> < ActiveRecord::Migration
+class Create<%= notifications_table_name.camelize %> < ActiveRecord::Migration
   def change
     create_table :<%= notifications_table_name %> do |t|
       t.integer :<%= user_model_name %>_id, null: false
