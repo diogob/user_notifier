@@ -5,6 +5,7 @@ describe UserNotifier::Base do
   let(:notification){ UserNotification.notify('test', user) }
   before{ user }
 
+
   describe "associations" do
     subject{ user }
     it{ should have_many :notifications }
@@ -49,7 +50,5 @@ describe UserNotifier::Base do
     before do
       notification.deliver!
     end
-    subject{ notification }
-    its(:sent_at){ should be_present }
   end
 end
