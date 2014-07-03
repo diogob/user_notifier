@@ -18,6 +18,6 @@ class UserNotifier::EmailWorker
   end
 
   def mailer
-    UserNotifier::BaseMailer
+    UserNotifier::Mailer
   end
 end

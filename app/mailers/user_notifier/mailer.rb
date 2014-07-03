@@ -1,11 +1,11 @@
-class UserNotifier::BaseMailer < ActionMailer::Base
+class UserNotifier::Mailer < ActionMailer::Base
   layout UserNotifier.email_layout
 
   def notify(notification)
     @notification = notification
     old_locale = I18n.locale
     I18n.locale = @notification.locale
-    subject = render_to_string(template: "notifications_mailer/subjects/#{@notification.template_name}")
+    subject = render_to_string(template: "user_notifier/mailer/#{@notification.template_name}_subject")
     m = mail({
       from: address_format(UserNotifier.system_email, @notification.from_name),
       reply_to: address_format(@notification.from_email, @notification.from_name),
