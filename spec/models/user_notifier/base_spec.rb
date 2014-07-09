@@ -11,6 +11,24 @@ describe UserNotifier::Base do
     it{ should have_many :notifications }
   end
 
+  describe ".notify_once" do
+    before{ notification }
+
+    it "should create notification in the database" do
+      expect(UserNotification.last).to be_present
+    end
+
+    it "should not create notification for same association and different template name" do
+      UserNotification.notify_once('another_test', user) 
+      expect(UserNotification.count(:all)).to eq 2
+    end
+
+    it "should not create duplicate notification for same association and template name" do
+      UserNotification.notify_once('test', user) 
+      expect(UserNotification.count(:all)).to eq 1
+    end
+  end
+
   describe ".notify" do
     subject{ notification }
 

@@ -1,8 +1,8 @@
 class UserNotifier::Base < ActiveRecord::Base
   self.abstract_class = true
 
-  def self.notify_once(template_name, user, filter, params = {})
-    notify(template_name, user, params) if is_unique?(template_name, filter)
+  def self.notify_once(template_name, user, params = {})
+    notify(template_name, user, params) if is_unique?(template_name, {self.user_association_name => user})
   end
 
   def self.notify(template_name, user, params = {})
