@@ -1,16 +1,18 @@
 class UserNotifier::Base < ActiveRecord::Base
   self.abstract_class = true
 
-  def self.notify_once(template_name, user, params = {})
-    notify(template_name, user, params) if is_unique?(template_name, {self.user_association_name => user})
+  def self.notify_once(template_name, user, source = nil, params = {})
+    notify(template_name, user, source, params) if is_unique?(template_name, {self.user_association_name => user})
   end
 
-  def self.notify(template_name, user, params = {})
+  def self.notify(template_name, user, source = nil, params = {})
+    source ||= user
     create!({
       template_name: template_name,
       locale: I18n.locale,
       from_email: UserNotifier.from_email,
       from_name: UserNotifier.from_name,
+      source: source,
       self.user_association_name => user
     }.merge(params)).tap{|n| n.deliver }
   end

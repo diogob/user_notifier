@@ -4,7 +4,7 @@ module UserNotifier
 
     DEFAULT_SYSTEM_EMAIL      = nil
     DEFAULT_EMAIL_LAYOUT      = 'email'
-    DEFAULT_USER_CLASS_NAME   = :user
+    DEFAULT_USER_CLASS_NAME   = 'User'
     DEFAULT_FROM_EMAIL        = 'no-reply@yourdomain'
     DEFAULT_FROM_NAME         = 'please configure a default from name'
 

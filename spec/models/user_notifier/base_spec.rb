@@ -2,13 +2,28 @@ require 'spec_helper'
 
 describe UserNotifier::Base do
   let(:user){ User.create email: 'foo@bar.com' }
+  let(:order){ Order.create user_id: user.id, title: 'test' }
   let(:notification){ UserNotification.notify('test', user) }
-  before{ user }
+  before{ order }
 
 
   describe "associations" do
-    subject{ user }
-    it{ should have_many :notifications }
+    context "in user model" do
+      subject{ user }
+      it{ should have_many :notifications }
+    end
+
+    context "in notifications model" do
+      subject{ notification }
+      it{ should belong_to :user }
+    end
+    context "in notifications model when notification source is not the user" do
+      let(:notification){ OrderNotification.notify('test', user, order) }
+      subject{ notification }
+      it{ should belong_to :user }
+      it{ should belong_to :order }
+      it{ should belong_to :source } # just an alias for order
+    end
   end
 
   describe ".notify_once" do
