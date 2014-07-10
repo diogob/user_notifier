@@ -5,13 +5,11 @@ module UserNotifier
     included do
       def notify template_name, user=nil, source=nil
         user ||= self
-        source ||= self
-        self.notifications.notify(template_name, user)
+        self.notifications.notify(template_name, user, source)
       end
 
       def notify_once template_name, user=nil, source=nil
         user ||= self
-        source ||= self
         self.notifications.notify_once(template_name, user, source)
       end
     end
