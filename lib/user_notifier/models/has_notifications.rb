@@ -3,14 +3,16 @@ module UserNotifier
     extend ActiveSupport::Concern
 
     included do
-      def notify template_name, user=nil, source=nil
+      def notify template_name, user=nil, source=nil, params={}
         user ||= self
-        self.notifications.notify(template_name, user, source)
+        source ||= self
+        self.notifications.notify(template_name, user, source, params)
       end
 
-      def notify_once template_name, user=nil, source=nil
+      def notify_once template_name, user=nil, source=nil, params={}
         user ||= self
-        self.notifications.notify_once(template_name, user, source)
+        source ||= self
+        self.notifications.notify_once(template_name, user, source, params)
       end
     end
 
