@@ -36,6 +36,9 @@ module UserNotifier
           self.parent.const_set base_class_name, klass
 
           source_name = self.model_name.to_s.downcase
+          if self.model_name.to_s.downcase != UserNotifier.user_class_name.downcase
+            klass.belongs_to source_name.to_sym
+          end
           klass.belongs_to :source, class_name: self.model_name.to_s, foreign_key: "#{source_name}_id"
         end
       end

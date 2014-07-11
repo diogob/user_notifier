@@ -21,7 +21,8 @@ describe UserNotifier::Base do
       let(:notification){ OrderNotification.notify('test', user, order) }
       subject{ notification }
       it{ should belong_to :user }
-      it{ should belong_to :source }
+      it{ should belong_to :order }
+      it{ should belong_to :source } # just an alias for order
     end
   end
 
