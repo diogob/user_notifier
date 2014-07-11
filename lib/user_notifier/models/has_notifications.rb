@@ -20,7 +20,7 @@ module UserNotifier
       private
       def set_association
         create_notification_class
-        self.has_many :notifications, class_name: notification_class_name
+        self.has_many :notifications, class_name: notification_class_name, dependent: :destroy
       end
 
       def notification_class_name
