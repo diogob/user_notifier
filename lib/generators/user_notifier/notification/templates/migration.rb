@@ -8,6 +8,7 @@ class Create<%= notifications_table_name.camelize %> < ActiveRecord::Migration
       t.text :template_name, null: false
       t.text :locale, null: false
       t.timestamp :sent_at
+      t.timestamps
     end
   end
 end
