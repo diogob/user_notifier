@@ -17,6 +17,7 @@ Then run:
     rails g user_notifier:install
 
 This will create an initializer in ```config/initializers/user_notifier.rb```
+Take a look in this initializer to tweak the default attributes of notifications.
 
 ## Notification sources and recipient
 This gem assumes that all notifications can be represented as a relation mapping a
@@ -43,5 +44,40 @@ consider ```Order``` to be our notification source. Therefore we should create a
 to store all these notifications. We use the ```notification``` generator:
 
     rails g user_notifier:notification order
+    rake db:migrate
+
+Now that this migration created a table to store our notifications from that source we can
+add the code in the model that includes the **notify** methods:
+```ruby
+class Order < ActiveRecord::Base
+  has_notifications
+end
+```
+That's all, now we have the Order model as a notification source and events in this model
+can send notifications to users in the User model. All this notifications can me accessed
+in the notifications associations like in ```Order.first.notifications```
+
+## Creating templates for the notifications
+All notifications templates should be stored in ```user_notifier/mailer/``` in your
+views directory. You should create at least two views for each notification you want to send,
+one for the body of the email and another one for the subject.
+Let's say we want to create a notification to users when orders are confirmed.
+We can call this the order_confirmed notification and create two templates:
+
+    user/notifier/mailer/order_confirmed.html.erb
+    user/notifier/mailer/order_confirmed_subject.html.erb
+
+Inside the templates we can use the ```@notification``` to access notification attributes.
+The ```@notification.source``` or ```@notification.order``` will give access to the order 
+model linked to the notification. The ```@notification.user``` will give access to the user model
+(this association name can vary according to the configuration but user is the default).
+
+## Sending notifications
+Now to send an order_confirmed notification we simply call the method notify as in:
+```ruby
+user = User.first
+order = Order.first
+order.notify(:order_confirmed, user)
+```
 
 This project rocks and uses MIT-LICENSE.
