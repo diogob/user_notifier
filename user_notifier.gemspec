@@ -10,8 +10,9 @@ Gem::Specification.new do |s|
   s.authors     = ["Diogo Biazus"]
   s.email       = ["diogo@biazus.me"]
   s.homepage    = "https://github.com/diogob/user_notifier"
-  s.summary     = "Simple pattern for keeping track of messages sent to users based on model events with different templates."
-  s.description = ""
+  s.summary     = "Send notifications to your system's users"
+  s.description = "Simple pattern for keeping track of messages sent to users based on model events with different templates."
+  s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
