@@ -1,5 +1,6 @@
 class UserNotifier::Base < ActiveRecord::Base
   self.abstract_class = true
+  after_commit :deliver
 
   def self.notify_once(template_name, user, source = nil, params = {})
     notify(template_name, user, source, params) if is_unique?(template_name, {self.user_association_name => user})
@@ -14,7 +15,7 @@ class UserNotifier::Base < ActiveRecord::Base
       from_name: UserNotifier.from_name,
       source: source,
       self.user_association_name => user
-    }.merge(params)).tap{|n| n.deliver }
+    }.merge(params))
   end
 
   def deliver

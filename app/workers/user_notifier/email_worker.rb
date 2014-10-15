@@ -6,6 +6,7 @@ class UserNotifier::EmailWorker
     resource = notification_model(model_name).find_by id: notification_id
     # We don't want to raise exceptions in case our notification does not exist in the database
     if resource
+      resource.update_attribute :sent_at, DateTime.now
       mailer.notify(resource).deliver
     else
       raise "Notification #{notification_id} not found.. sending to retry queue"
