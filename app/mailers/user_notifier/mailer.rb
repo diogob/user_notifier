@@ -3,18 +3,16 @@ class UserNotifier::Mailer < ActionMailer::Base
 
   def notify(notification)
     @notification = notification
-    old_locale = I18n.locale
-    I18n.locale = @notification.locale
-    subject = render_to_string(template: "user_notifier/mailer/#{@notification.template_name}_subject")
-    m = mail({
-      from: address_format(UserNotifier.system_email, @notification.from_name),
-      reply_to: address_format(@notification.from_email, @notification.from_name),
-      to: @notification.user.email,
-      subject: subject,
-      template_name: @notification.template_name
-    })
-    I18n.locale = old_locale
-    m
+    I18n.with_locale @notification.locale do
+      subject = render_to_string(template: "user_notifier/mailer/#{@notification.template_name}_subject")
+      mail({
+        from: address_format(UserNotifier.system_email, @notification.from_name),
+        reply_to: address_format(@notification.from_email, @notification.from_name),
+        to: @notification.user.email,
+        subject: subject,
+        template_name: @notification.template_name
+      })
+    end
   end
 
   private
