@@ -4,16 +4,10 @@ class UserNotifier::Mailer < ActionMailer::Base
   def notify(notification)
     @notification = notification
 
-    old_locale = I18n.locale
-    I18n.locale = @notification.locale
-
-    configure_xsmtp_headers if UserNotifier.use_xsmtp_api
-
-    message = mail(mail_attributes)
-
-    I18n.locale = old_locale
-
-    message
+    I18n.with_locale @notification.locale do
+      configure_xsmtp_headers if UserNotifier.use_xsmtp_api
+      mail(mail_attributes)
+    end
   end
 
   private
