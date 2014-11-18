@@ -15,7 +15,7 @@ describe UserNotifier::Mailer do
 
     context "when notification's locale is en" do
       let(:notification){ UserNotification.notify('test', user, nil, {locale: :en}) }
-      its(:subject){ should eq "test subject\n" }
+      its(:subject){ should eq "test subject " }
       it "should get body in english" do
         expect(subject.body.to_s).to eq "test body\n\n"
       end
@@ -23,7 +23,7 @@ describe UserNotifier::Mailer do
 
     context "when notification's locale is pt" do
       let(:notification){ UserNotification.notify('test', user, nil, {locale: :pt}) }
-      its(:subject){ should eq "assunto de teste\n" }
+      its(:subject){ should eq "assunto de teste " }
       it "should get body in english" do
         expect(subject.body.to_s).to eq "corpo de teste\n\n"
       end
