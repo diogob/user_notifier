@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    user_notifier (0.0.5)
+    user_notifier (0.1.0)
       rails (>= 4.0.0)
       sidekiq
 
@@ -100,7 +100,7 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
-    sprockets (2.12.2)
+    sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
