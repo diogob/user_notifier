@@ -7,7 +7,7 @@ module UserNotifier
     DEFAULT_USER_CLASS_NAME   = 'User'
     DEFAULT_FROM_EMAIL        = 'no-reply@yourdomain'
     DEFAULT_FROM_NAME         = 'please configure a default from name'
-    DEFAULT_USE_XSMTPAPI      = false
+    DEFAULT_USE_XSMTP_API      = false
 
     # Build accessor methods for every config options so we can do this, for example:
     #   Awesome.format = <img src="http://s2.wp.com/wp-includes/images/smilies/icon_mad.gif?m=1129645325g" alt=":x" class="wp-smiley"> ml
@@ -32,7 +32,7 @@ module UserNotifier
       self.user_class_name    = DEFAULT_USER_CLASS_NAME
       self.from_email         = DEFAULT_FROM_EMAIL
       self.from_name          = DEFAULT_FROM_NAME
-      self.use_xsmtp_api      = DEFAULT_USE_XSMTPAPI
+      self.use_xsmtp_api      = DEFAULT_USE_XSMTP_API
     end
 
   end # Configuration
