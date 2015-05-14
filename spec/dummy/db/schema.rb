@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140709170259) do
 
-  create_table "order_notifications", force: true do |t|
+  create_table "order_notifications", force: :cascade do |t|
     t.integer  "user_id",       null: false
     t.integer  "order_id",      null: false
     t.text     "from_email",    null: false
@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 20140709170259) do
     t.datetime "sent_at"
   end
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_notifications", force: true do |t|
+  create_table "user_notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "from_email"
     t.text     "from_name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140709170259) do
     t.datetime "sent_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.text     "name"
     t.text     "email"
     t.datetime "created_at"
