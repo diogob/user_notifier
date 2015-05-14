@@ -26,6 +26,14 @@ class UserNotifier::Base < ActiveRecord::Base
     UserNotifier::EmailWorker.perform_async(self.class.name.to_s, self.id)
   end
 
+  def deliver_without_worker
+    mailer.notify(self).deliver
+  end
+
+  def mailer
+    UserNotifier::Mailer
+  end
+
   private
   def self.user_association_name
     UserNotifier.user_class_name.downcase.to_sym
