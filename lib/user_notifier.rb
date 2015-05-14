@@ -7,5 +7,6 @@ module UserNotifier
 end
 
 ActiveSupport.on_load :active_record do
+  require "user_notifier/models/base"
   require "user_notifier/models/has_notifications"
 end
