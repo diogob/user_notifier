@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709170259) do
+ActiveRecord::Schema.define(version: 20150713180329) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "order_notifications", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -21,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140709170259) do
     t.text     "template_name", null: false
     t.text     "locale",        null: false
     t.datetime "sent_at"
+    t.datetime "deliver_at",    default: "now()"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -37,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140709170259) do
     t.text     "template_name"
     t.text     "locale"
     t.datetime "sent_at"
+    t.datetime "deliver_at",    default: "now()"
   end
 
   create_table "users", force: :cascade do |t|
