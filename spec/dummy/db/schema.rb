@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20150713180329) do
   enable_extension "plpgsql"
 
   create_table "order_notifications", force: :cascade do |t|
-    t.integer  "user_id",       null: false
-    t.integer  "order_id",      null: false
-    t.text     "from_email",    null: false
-    t.text     "from_name",     null: false
-    t.text     "template_name", null: false
-    t.text     "locale",        null: false
+    t.integer  "user_id",                         null: false
+    t.integer  "order_id",                        null: false
+    t.text     "from_email",                      null: false
+    t.text     "from_name",                       null: false
+    t.text     "template_name",                   null: false
+    t.text     "locale",                          null: false
     t.datetime "sent_at"
     t.datetime "deliver_at",    default: "now()"
   end

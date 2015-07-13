@@ -3,7 +3,7 @@ machine:
     version: 2.2.2
 database:
   override:
-    - cd spec/dummy && rake db:create db:migrate
+    - cd spec/dummy && rake db:create db:migrate db:test:prepare
 test:
   override:
     - bundle exec rspec

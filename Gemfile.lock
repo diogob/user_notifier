@@ -148,6 +148,3 @@ DEPENDENCIES
   shoulda-matchers
   sqlite3
   user_notifier!
-
-BUNDLED WITH
-   1.10.3
