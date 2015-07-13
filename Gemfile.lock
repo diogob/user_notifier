@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    user_notifier (0.1.2)
+    user_notifier (0.2.0)
       rails (>= 4.0.0)
       sidekiq
 
