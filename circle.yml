@@ -1,0 +1,6 @@
+database:
+  override:
+    - cd spec/dummy && rake db:create db:migrate
+test:
+  override:
+    - bundle exec rspec
