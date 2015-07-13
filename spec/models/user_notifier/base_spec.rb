@@ -34,12 +34,12 @@ describe UserNotifier::Base do
     end
 
     it "should not create notification for same association and different template name" do
-      UserNotification.notify_once('another_test', user) 
+      UserNotification.notify_once('another_test', user)
       expect(UserNotification.count(:all)).to eq 2
     end
 
     it "should not create duplicate notification for same association and template name" do
-      UserNotification.notify_once('test', user) 
+      UserNotification.notify_once('test', user)
       expect(UserNotification.count(:all)).to eq 1
     end
   end
@@ -47,12 +47,27 @@ describe UserNotifier::Base do
   describe ".notify" do
     subject{ notification }
 
-    it "should create notification in the database" do
-      subject
-      expect(UserNotification.last).to be_present
+    context "direct notification" do
+      it "should create notification in the database" do
+        subject
+        expect(UserNotification.last).to be_present
+      end
+
+      its(:template_name){ should eq 'test' }
+      its(:deliver_at){ should be_kind_of(Time) }
     end
 
-    its(:template_name){ should eq 'test' }
+    context "with scheduled notification" do
+      let(:deliver_at) { 3.days.from_now }
+      let(:notification) {  UserNotification.notify('deliver_at_test', user, nil, {deliver_at: deliver_at}) }
+      it "should create notification in the database" do
+        subject
+        expect(UserNotification.last).to be_present
+      end
+
+      its(:template_name){ should eq 'deliver_at_test' }
+      its(:deliver_at){ should eq deliver_at }
+    end
   end
 
   describe "#deliver" do
