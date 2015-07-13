@@ -23,7 +23,7 @@ class UserNotifier::Base < ActiveRecord::Base
   end
 
   def deliver!
-    UserNotifier::EmailWorker.perform_async(self.class.name.to_s, self.id)
+    UserNotifier::EmailWorker.perform_at((self.try(:deliver_at) || Time.now), self.class.name.to_s, self.id)
   end
 
   def deliver_without_worker
