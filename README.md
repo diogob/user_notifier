@@ -1,4 +1,4 @@
-# User Notifier [![Circle CI](https://circleci.com/gh/diogob/user_notifier.svg?style=svg)](https://circleci.com/gh/diogob/user_notifier) [![Code Climate](https://codeclimate.com/github/diogob/user_notifier.png)](https://codeclimate.com/github/diogob/user_notifier)
+# User Notifier [![Circle CI](https://circleci.com/gh/diogob/user_notifier.svg?style=svg)](https://circleci.com/gh/diogob/user_notifier) [![Code Climate](https://codeclimate.com/github/diogob/user_notifier.svg)](https://codeclimate.com/github/diogob/user_notifier)
 
 User Notifier creates a very simple pattern to store and manage event generated 
 notifications for the users of a Rails application
