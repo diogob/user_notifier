@@ -10,6 +10,7 @@ describe UserNotifier::Mailer do
   describe "#notify" do
     subject{ mailer.notify(notification) }
     its(:from){ should eq [] }
+    its(:cc){ should eq [] }
     its(:reply_to){ should eq ["no-reply@yourdomain"] }
     its(:to){ should eq ["foo@bar.com"] }
 
