@@ -1,8 +1,9 @@
 module UserNotifier
   module Configuration
-    VALID_CONFIG_KEYS    = [:system_email, :email_layout, :user_class_name, :from_email, :from_name, :use_xsmtp_api, :auto_deliver].freeze
+    VALID_CONFIG_KEYS    = [:system_email, :email_layout, :user_class_name, :from_email, :from_name, :use_xsmtp_api, :auto_deliver, :cc].freeze
 
     DEFAULT_SYSTEM_EMAIL      = nil
+    DEFAULT_CC                = nil
     DEFAULT_EMAIL_LAYOUT      = 'email'
     DEFAULT_USER_CLASS_NAME   = 'User'
     DEFAULT_FROM_EMAIL        = 'no-reply@yourdomain'
@@ -32,6 +33,7 @@ module UserNotifier
       self.email_layout       = DEFAULT_EMAIL_LAYOUT
       self.user_class_name    = DEFAULT_USER_CLASS_NAME
       self.from_email         = DEFAULT_FROM_EMAIL
+      self.cc                 = DEFAULT_CC
       self.from_name          = DEFAULT_FROM_NAME
       self.use_xsmtp_api      = DEFAULT_USE_XSMTP_API
       self.auto_deliver       = DEFAULT_AUTO_DELIVER

@@ -21,7 +21,7 @@ class UserNotifier::Mailer < ActionMailer::Base
       from: address_format(UserNotifier.system_email, @notification.from_name),
       reply_to: address_format(@notification.from_email, @notification.from_name),
       to: @notification.user.email,
-      cc: (JSON.parse @notification.metadata.gsub('=>', ':'))['cc'],#FIXME when upgrading to rails 4.2 which supports jsonb
+      cc: @notification.cc,
       subject: subject,
       template_name: @notification.template_name
     }
